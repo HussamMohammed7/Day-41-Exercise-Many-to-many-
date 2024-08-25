@@ -2,6 +2,7 @@ package com.example.exercisejparelationi.Service;
 
 import com.example.exercisejparelationi.Api.ApiException;
 import com.example.exercisejparelationi.Model.Course;
+import com.example.exercisejparelationi.Model.Student;
 import com.example.exercisejparelationi.Model.Teacher;
 import com.example.exercisejparelationi.Repository.CourseRepository;
 import com.example.exercisejparelationi.Repository.TeacherRepository;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -68,5 +70,14 @@ public class CourseService {
 
         }
         return course.getTeacher().getName();
+    }
+
+    public Set<Student> getAllStudentsCourse(Integer course_id) {
+        Course course = courseRepository.findCourseById(course_id);
+        if (course == null) {
+            throw new ApiException("Course not found");
+        }
+
+        return course.getStudents();
     }
 }

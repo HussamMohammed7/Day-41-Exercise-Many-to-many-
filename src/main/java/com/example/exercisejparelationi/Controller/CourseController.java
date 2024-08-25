@@ -61,4 +61,12 @@ public class CourseController {
                 "Teacher assigned to course successfully"
         );
     }
+
+    @GetMapping("/get-students/{id}")
+    public ResponseEntity getStudentsCourse(@PathVariable Integer id){
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                courseService.getAllStudentsCourse(id)
+        );
+    }
 }
